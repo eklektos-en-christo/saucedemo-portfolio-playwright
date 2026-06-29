@@ -3,13 +3,13 @@ import { test, expect } from '@playwright/test';
 const sauceDemo = 'https://www.saucedemo.com/'
 
 test('has title', async ({ page }) => {
-    await page.goto(sauceDemo);
+    await page.goto(sauceDemo)
 
     await expect(page).toHaveTitle('Swag Labs')
 })
 
-test('login success - with right credentials', async ({ page }) => {
-    await page.goto(sauceDemo);
+test('login success', async ({ page }) => {
+    await page.goto(sauceDemo)
 
     await page.getByPlaceholder('Username').fill('standard_user')
 
@@ -20,3 +20,17 @@ test('login success - with right credentials', async ({ page }) => {
     await expect(page).toHaveURL(`${sauceDemo}inventory.html`)
 })
 
+test('login failed', async ({ page }) => {
+    await page.goto(sauceDemo)
+
+    await page.getByPlaceholder('Username').fill('standard_user')
+
+    await page.getByPlaceholder('Password').fill('wrong.kd-pass')
+
+    await page.getByRole('button', { name: 'Login' }).click()
+
+    // await expect(page).not.toHaveURL(`${sauceDemo}inventory.html`)
+
+    await expect(page.getByRole('heading',
+        { name: 'Username and password do not match' })).toBeVisible()
+})
