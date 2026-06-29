@@ -19,3 +19,29 @@ test('add item to cart', async ({ page }) => {
     await expect(cartBadge).toContainText('1')
 })
 
+test('remove item from cart', async ({ page }) => {
+    const cartBadge = page.getByTestId('shopping-cart-badge')
+
+    await page.getByRole('button', { name: 'Add to cart' }).nth(1).click()
+    await expect(cartBadge).toContainText('1')
+
+    await page.getByTestId('shopping-cart-badge').click()
+    await page.getByRole('button', { name: 'Remove' }).click()
+
+    await expect(cartBadge).toBeHidden()
+})
+
+test('product info', async ({ page }) => {
+    await page.getByTestId('inventory-item-name').nth(2).click()
+
+    const itemTitle = await page.getByTestId('inventory-item-name')
+    const itemPrice = await page.getByTestId('inventory-item-price')
+    const itemDesc = await page.getByTestId('inventory-item-desc')
+
+    await expect(itemTitle).toBeVisible()
+    await expect(itemTitle).not.toBeEmpty()
+    await expect(itemPrice).toBeVisible()
+    await expect(itemPrice).not.toBeEmpty()
+    await expect(itemDesc).toBeVisible()
+    await expect(itemDesc).not.toBeEmpty()
+})
