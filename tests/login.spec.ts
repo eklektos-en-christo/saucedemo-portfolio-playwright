@@ -34,3 +34,19 @@ test('login failed', async ({ page }) => {
     await expect(page.getByRole('heading',
         { name: 'Username and password do not match' })).toBeVisible()
 })
+
+test('locked out user', async ({ page }) => {
+    await page.goto(sauceDemo)
+
+    await page.getByPlaceholder('Username').fill('locked_out_user')
+
+    await page.getByPlaceholder('Password').fill('secret_sauce')
+
+    await page.getByRole('button', { name: 'Login' }).click()
+
+    // console.log(await page.getByRole('heading',
+    //     { name: 'Sorry, this user has been locked out' }).textContent())
+
+    await expect(page.getByRole('heading',
+        { name: 'Sorry, this user has been locked out' })).toBeVisible()
+})
