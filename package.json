@@ -1,0 +1,23 @@
+{
+  "name": "saucedemo-portfolio-playwright",
+  "version": "1.0.0",
+  "description": "Beginner level testing on saucedemo.com",
+  "main": "index.js",
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/eklektos-en-christo/saucedemo-portfolio-playwright.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/eklektos-en-christo/saucedemo-portfolio-playwright/issues"
+  },
+  "homepage": "https://github.com/eklektos-en-christo/saucedemo-portfolio-playwright#readme",
+  "devDependencies": {
+    "@playwright/test": "^1.61.1",
+    "@types/node": "^26.0.1"
+  }
+}
