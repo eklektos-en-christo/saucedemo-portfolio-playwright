@@ -34,9 +34,9 @@ test('remove item from cart', async ({ page }) => {
 test('product info', async ({ page }) => {
     await page.getByTestId('inventory-item-name').nth(2).click()
 
-    const itemTitle = await page.getByTestId('inventory-item-name')
-    const itemPrice = await page.getByTestId('inventory-item-price')
-    const itemDesc = await page.getByTestId('inventory-item-desc')
+    const itemTitle = page.getByTestId('inventory-item-name')
+    const itemPrice = page.getByTestId('inventory-item-price')
+    const itemDesc = page.getByTestId('inventory-item-desc')
 
     await expect(itemTitle).toBeVisible()
     await expect(itemTitle).not.toBeEmpty()
@@ -44,4 +44,21 @@ test('product info', async ({ page }) => {
     await expect(itemPrice).not.toBeEmpty()
     await expect(itemDesc).toBeVisible()
     await expect(itemDesc).not.toBeEmpty()
+})
+
+test('checkout', async ({ page }) => {
+    await page.getByRole('button', { name: 'Add to cart' }).nth(3).click()
+    await page.getByTestId('shopping-cart-badge').click()
+    await page.getByRole('button', { name: 'checkout' }).click()
+    await page.getByTestId('firstName').fill('John')
+    await page.getByTestId('lastName').fill('Garcin')
+    await page.getByTestId('postalCode').fill('32523')
+    await page.getByRole('button', { name: 'continue' }).click()
+
+    await page.getByText('All Rights Reserved.').scrollIntoViewIfNeeded()
+
+    await page.getByTestId('finish').click()
+
+    await expect(page).toHaveURL(`${baseURL}checkout-complete.html`)
+    await expect(page.getByText('Thank you for your order!', { exact: true })).toBeVisible()
 })
