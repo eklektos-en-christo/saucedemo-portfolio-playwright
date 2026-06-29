@@ -10,11 +10,8 @@ test('has title', async ({ page }) => {
 
 test('login success', async ({ page }) => {
     await page.goto(baseURL)
-
     await page.getByPlaceholder('Username').fill('standard_user')
-
     await page.getByPlaceholder('Password').fill('secret_sauce')
-
     await page.getByRole('button', { name: 'Login' }).click()
 
     await expect(page).toHaveURL(`${baseURL}inventory.html`)
@@ -22,11 +19,8 @@ test('login success', async ({ page }) => {
 
 test('login failed', async ({ page }) => {
     await page.goto(baseURL)
-
     await page.getByPlaceholder('Username').fill('standard_user')
-
     await page.getByPlaceholder('Password').fill('wrong.kd-pass')
-
     await page.getByRole('button', { name: 'Login' }).click()
 
     // await expect(page).not.toHaveURL(`${sauceDemo}inventory.html`)
@@ -37,11 +31,8 @@ test('login failed', async ({ page }) => {
 
 test('locked out user', async ({ page }) => {
     await page.goto(baseURL)
-
     await page.getByPlaceholder('Username').fill('locked_out_user')
-
     await page.getByPlaceholder('Password').fill('secret_sauce')
-
     await page.getByRole('button', { name: 'Login' }).click()
 
     // console.log(await page.getByRole('heading',
@@ -53,7 +44,6 @@ test('locked out user', async ({ page }) => {
 
 test('empty fields login', async ({ page }) => {
     await page.goto(baseURL)
-
     await page.getByRole('button', { name: 'Login' }).click()
 
     // console.log(await page.getByRole('heading',
@@ -65,9 +55,7 @@ test('empty fields login', async ({ page }) => {
 
 test('empty password field', async ({ page }) => {
     await page.goto(baseURL)
-
     await page.getByPlaceholder('Username').fill('standard_user')
-
     await page.getByRole('button', { name: 'Login' }).click()
 
     // console.log(await page.getByRole('heading',
