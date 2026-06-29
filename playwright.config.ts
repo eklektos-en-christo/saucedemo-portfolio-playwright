@@ -39,7 +39,7 @@ export default defineConfig({
       use: {
         ...devices['Desktop Chrome'],
         launchOptions: {
-          slowMo: 280
+          slowMo: 250
         },
         testIdAttribute: 'data-test'
       },
