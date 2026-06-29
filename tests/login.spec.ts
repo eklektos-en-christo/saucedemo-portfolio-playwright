@@ -1,15 +1,15 @@
 import { test, expect } from '@playwright/test';
 
-const sauceDemo = 'https://www.saucedemo.com/'
+const baseURL = 'https://www.saucedemo.com/'
 
 test('has title', async ({ page }) => {
-    await page.goto(sauceDemo)
+    await page.goto(baseURL)
 
     await expect(page).toHaveTitle('Swag Labs')
 })
 
 test('login success', async ({ page }) => {
-    await page.goto(sauceDemo)
+    await page.goto(baseURL)
 
     await page.getByPlaceholder('Username').fill('standard_user')
 
@@ -17,11 +17,11 @@ test('login success', async ({ page }) => {
 
     await page.getByRole('button', { name: 'Login' }).click()
 
-    await expect(page).toHaveURL(`${sauceDemo}inventory.html`)
+    await expect(page).toHaveURL(`${baseURL}inventory.html`)
 })
 
 test('login failed', async ({ page }) => {
-    await page.goto(sauceDemo)
+    await page.goto(baseURL)
 
     await page.getByPlaceholder('Username').fill('standard_user')
 
@@ -36,7 +36,7 @@ test('login failed', async ({ page }) => {
 })
 
 test('locked out user', async ({ page }) => {
-    await page.goto(sauceDemo)
+    await page.goto(baseURL)
 
     await page.getByPlaceholder('Username').fill('locked_out_user')
 
@@ -52,7 +52,7 @@ test('locked out user', async ({ page }) => {
 })
 
 test('empty fields login', async ({ page }) => {
-    await page.goto(sauceDemo)
+    await page.goto(baseURL)
 
     await page.getByRole('button', { name: 'Login' }).click()
 
@@ -64,7 +64,7 @@ test('empty fields login', async ({ page }) => {
 })
 
 test('empty password field', async ({ page }) => {
-    await page.goto(sauceDemo)
+    await page.goto(baseURL)
 
     await page.getByPlaceholder('Username').fill('standard_user')
 
