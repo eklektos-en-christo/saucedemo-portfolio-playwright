@@ -50,3 +50,29 @@ test('locked out user', async ({ page }) => {
     await expect(page.getByRole('heading',
         { name: 'Sorry, this user has been locked out' })).toBeVisible()
 })
+
+test('empty fields login', async ({ page }) => {
+    await page.goto(sauceDemo)
+
+    await page.getByRole('button', { name: 'Login' }).click()
+
+    // console.log(await page.getByRole('heading',
+    //     { name: 'Username is required' }).textContent())
+
+    await expect(page.getByRole('heading',
+        { name: 'Username is required' })).toBeVisible()
+})
+
+test('empty password field', async ({ page }) => {
+    await page.goto(sauceDemo)
+
+    await page.getByPlaceholder('Username').fill('standard_user')
+
+    await page.getByRole('button', { name: 'Login' }).click()
+
+    // console.log(await page.getByRole('heading',
+    //     { name: 'Password is required' }).textContent())
+
+    await expect(page.getByRole('heading',
+        { name: 'Password is required' })).toBeVisible()
+})
