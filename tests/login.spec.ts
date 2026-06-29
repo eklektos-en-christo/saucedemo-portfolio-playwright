@@ -8,7 +8,7 @@ test('has title', async ({ page }) => {
     await expect(page).toHaveTitle('Swag Labs')
 })
 
-test('login success', async ({ page }) => {
+test('login success - with right credentials', async ({ page }) => {
     await page.goto(sauceDemo);
 
     await page.getByPlaceholder('Username').fill('standard_user')
@@ -19,3 +19,4 @@ test('login success', async ({ page }) => {
 
     await expect(page).toHaveURL(`${sauceDemo}inventory.html`)
 })
+
