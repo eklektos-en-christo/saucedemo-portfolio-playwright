@@ -10,7 +10,7 @@ test.beforeEach('logged in...', async ({ page }) => {
 })
 
 test('common elements visible', async ({ page }) => {
-    await page.screenshot({ path: './screenshots/cart_icon.png' })
+    await page.screenshot({ path: './screenshots/cart_icon.png', 'fullPage': true })
 
     const cartIcon = page.getByTestId('shopping-cart-link')
     const inventoryItems = page.getByTestId('inventory-item').all()
