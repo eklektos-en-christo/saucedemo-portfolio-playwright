@@ -1,4 +1,3 @@
-# saucedemo-portfolio-playwright
 A simple beginner level test project for saucedemo.com using playwright with TypeScript.
 
 Functionalities tested:
