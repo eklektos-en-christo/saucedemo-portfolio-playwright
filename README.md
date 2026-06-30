@@ -1,14 +1,48 @@
-A simple beginner level test project for saucedemo.com using playwright with TypeScript.
+# SauceDemo Test Automation
 
-Functionalities tested:
-Login
-Inventory
-Card
-Checkout
+A beginner-level end-to-end test automation project for [saucedemo.com](https://www.saucedemo.com/), built with Playwright and TypeScript.
 
-To run:
+## Functionality Tested
 
-Use
-npx playwright test tests/login.spec.ts --headed
+- **Login** — successful login, failed login, locked out user, empty field validation
+- **Inventory** — page elements, product details
+- **Cart** — add to cart, remove from cart
+- **Checkout** — full checkout flow, form validation
 
---headed flag is for running the test in browser, by default the test will run in headless mode
+## Tech Stack
+
+- Playwright
+- TypeScript
+- Node.js
+
+## Setup
+
+```bash
+npm install
+npx playwright install
+```
+
+## Running Tests
+
+Run all tests:
+```bash
+npx playwright test
+```
+
+Run a specific file:
+```bash
+npx playwright test tests/login.spec.ts
+```
+
+Run with browser visible (headed mode):
+```bash
+npx playwright test --headed
+```
+
+By default tests run in headless mode.
+
+## View Test Report
+
+```bash
+npx playwright show-report
+```
