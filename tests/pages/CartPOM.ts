@@ -33,7 +33,7 @@ export async function cartCheckout(page: Page, firstName: string, lastName: stri
     await getFillInfo(page, firstName, lastName, postalCode)
     await page.getByRole('button', { name: 'continue' }).click()
     await page.getByText('All Rights Reserved.').scrollIntoViewIfNeeded()
-    await page.getByTestId('finish').click()
+    await page.getByRole('button', { name: 'Finish' }).click()
 
     return {
         pageUrl: page.url(),

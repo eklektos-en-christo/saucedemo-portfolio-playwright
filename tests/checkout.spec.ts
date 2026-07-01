@@ -1,40 +1,30 @@
 import { test, expect } from '@playwright/test'
+import * as auth from './pages/LoginPOM'
+import * as cart from './pages/CartPOM'
+import * as checkout from './pages/CheckoutPOM'
 
-const baseURL = 'https://www.saucedemo.com/'
-
-test.beforeEach('at checkout...', async ({ page }) => {
-    await page.goto(baseURL)
-    await page.getByPlaceholder('Username').fill('standard_user')
-    await page.getByPlaceholder('Password').fill('secret_sauce')
-    await page.getByRole('button', { name: 'Login' }).click()
-    await page.getByRole('button', { name: 'Add to cart' }).nth(2).click()
-    await page.getByTestId('shopping-cart-badge').click()
-    await page.getByRole('button', { name: 'checkout' }).click()
-})
-
-test('Checkout form validation — empty fields', async ({ page }) => {
-    await page.getByRole('button', { name: 'continue' }).click()
+test('empty fields', async ({ page }) => {
+    await auth.login(page, 'standard_user', 'secret_sauce')
+    await cart.addItem(page)
+    const errorMessage = await checkout.emptyFields(page)
 
     // console.log(await page.getByRole('heading').allTextContents())
 
-    await expect(page.getByRole('heading', { name: 'Error: First Name is required' })).toBeVisible()
+    await expect(errorMessage).toBeVisible()
 })
 
-test('Checkout form validation — last name, postal code empty', async ({ page }) => {
-    await page.getByTestId('firstName').fill('John')
-    await page.getByRole('button', { name: 'continue' }).click()
+test('last name, postal code empty', async ({ page }) => {
+    await auth.login(page, 'standard_user', 'secret_sauce')
+    await cart.addItem(page)
+    const errorMessage = await checkout.lastNamePostalEmpty(page)
 
-    // console.log(await page.getByRole('heading').allTextContents())
-
-    await expect(page.getByRole('heading', { name: 'Error: Last Name is required' })).toBeVisible()
+    await expect(errorMessage).toBeVisible()
 })
 
-test('Checkout form validation — postal code empty', async ({ page }) => {
-    await page.getByTestId('firstName').fill('John')
-    await page.getByTestId('lastName').fill('Garcin')
-    await page.getByRole('button', { name: 'continue' }).click()
+test('postal code empty', async ({ page }) => {
+    await auth.login(page, 'standard_user', 'secret_sauce')
+    await cart.addItem(page)
+    const errorMessage = await checkout.postalEmpty(page)
 
-    // console.log(await page.getByRole('heading').allTextContents())
-
-    await expect(page.getByRole('heading', { name: 'Error: Postal Code is required' })).toBeVisible()
+    await expect(errorMessage).toBeVisible()
 })
