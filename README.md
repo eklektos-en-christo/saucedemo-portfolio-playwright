@@ -6,7 +6,7 @@ A beginner-level end-to-end test automation project for saucedemo.com, built wit
 
 - **Login** — successful login, failed login, locked out user, empty field validation
 - **Inventory** — page elements, product details
-- **Cart** — add to cart, remove from cart
+- **Cart** — add to cart, remove from cart, item info visibility, cart checkout
 - **Checkout** — full checkout flow, form validation
 
 ## Tech Stack
