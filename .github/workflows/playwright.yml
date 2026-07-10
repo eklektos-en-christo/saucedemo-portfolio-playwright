@@ -5,7 +5,7 @@ on:
     branches: [main]
 
 jobs:
-  test:
+  run-saucedemo-tests:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
