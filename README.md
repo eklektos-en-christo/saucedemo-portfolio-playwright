@@ -1,6 +1,6 @@
 # SauceDemo Test Automation
 
-A beginner-level end-to-end test automation project for saucedemo.com, built with Playwright and TypeScript. Uses the Page Object Model (POM) architecture to reduce code duplication and improve maintainability.
+A beginner-level end-to-end test automation project for saucedemo.com, built with Playwright and TypeScript. Uses the Page Object Model (POM) architecture to reduce code duplication and improve maintainability. Tests run automatically via GitHub Actions on every push.
 
 ## Functionality Tested
 
