@@ -5,6 +5,7 @@ const baseURL = 'https://www.saucedemo.com/'
 
 test('has title', async ({ page }) => {
     await auth.goto(page)
+    await expect(page).toHaveTitle('Swag Labs')
 })
 
 test('login success', async ({ page }) => {
